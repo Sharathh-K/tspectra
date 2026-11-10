@@ -1,0 +1,54 @@
+{
+  "source": "Kaggle Beyond Visible Spectrum: AI for Agriculture 2023",
+  "files": 900,
+  "shape_hwb": [
+    64,
+    64,
+    125
+  ],
+  "raw_band_counts": {
+    "125": 741,
+    "126": 159
+  },
+  "binary_extra_bands_removed": 159,
+  "classes": {
+    "Health": 200,
+    "Other": 200,
+    "Rust": 200,
+    "unlabelled": 300
+  },
+  "splits": {
+    "train": 480,
+    "validation": 120,
+    "unlabelled": 300
+  },
+  "class_ids": {
+    "Health": 0,
+    "Other": 1,
+    "Rust": 2
+  },
+  "pca_components": 16,
+  "training_pixels_sampled": 30720,
+  "explained_variance_ratio": [
+    0.6228747963905334,
+    0.36846625804901123,
+    0.003400633344426751,
+    0.002253193873912096,
+    0.0008577039698138833,
+    0.0002990114444401115,
+    0.00023850418801885098,
+    0.0002039187093032524,
+    0.00016155226330738515,
+    9.775073704076931e-05,
+    9.326475992565975e-05,
+    7.509817805839702e-05,
+    6.016657789587043e-05,
+    5.538760160561651e-05,
+    4.548599463305436e-05,
+    4.271851139492355e-05
+  ],
+  "retained_variance": 0.9992254376411438,
+  "seed": 42,
+  "geography": "Unverified CRS/transform; do not locate these patches on the demo farm.",
+  "evaluation_limit": "Patch split only: farm/date grouping unavailable; not a field-generalization score."
+}

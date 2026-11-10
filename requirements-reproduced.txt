@@ -1,0 +1,8 @@
+# Scientific versions used to generate the delivered reports and notebook outputs.
+# Install requirements.txt first for Jupyter support, then this file if exact
+# scientific-library versions are wanted. Platform/Python wheel availability varies.
+numpy==2.0.2
+rasterio==1.4.3
+scikit-learn==1.6.1
+matplotlib==3.9.4
+joblib==1.5.3
