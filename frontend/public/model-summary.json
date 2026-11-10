@@ -1,0 +1,146 @@
+{
+  "model": "Compact hybrid 3D\u20132D CNN",
+  "classes": [
+    "Health",
+    "Other",
+    "Rust"
+  ],
+  "parameters": 23703,
+  "training_images": 480,
+  "validation_images": 120,
+  "unlabelled_images": 300,
+  "seed": 42,
+  "device": "cpu",
+  "torch_version": "2.8.0",
+  "python_version": "3.9.6",
+  "batch_size": 16,
+  "max_epochs": 20,
+  "epochs_run": 16,
+  "best_epoch": 11,
+  "selection_rule": "minimum validation cross-entropy; patience 5 by default",
+  "patience": 5,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "elapsed_seconds": 55.14831220800001,
+  "peak_process_memory_mib": 313.046875,
+  "input_batch_mib": 0.25,
+  "cached_labelled_inputs_mib": 9.375,
+  "cnn": {
+    "accuracy": 0.6583333333333333,
+    "macro_f1": 0.6346216889588251,
+    "confusion_matrix": [
+      [
+        12,
+        8,
+        20
+      ],
+      [
+        3,
+        34,
+        3
+      ],
+      [
+        7,
+        0,
+        33
+      ]
+    ],
+    "per_class": {
+      "Health": {
+        "precision": 0.5454545454545454,
+        "recall": 0.3,
+        "f1-score": 0.3870967741935484,
+        "support": 40.0
+      },
+      "Other": {
+        "precision": 0.8095238095238095,
+        "recall": 0.85,
+        "f1-score": 0.8292682926829268,
+        "support": 40.0
+      },
+      "Rust": {
+        "precision": 0.5892857142857143,
+        "recall": 0.825,
+        "f1-score": 0.6875,
+        "support": 40.0
+      },
+      "accuracy": 0.6583333333333333,
+      "macro avg": {
+        "precision": 0.648088023088023,
+        "recall": 0.6583333333333333,
+        "f1-score": 0.6346216889588251,
+        "support": 120.0
+      },
+      "weighted avg": {
+        "precision": 0.648088023088023,
+        "recall": 0.6583333333333333,
+        "f1-score": 0.6346216889588251,
+        "support": 120.0
+      }
+    }
+  },
+  "baseline": {
+    "accuracy": 0.6416666666666667,
+    "macro_f1": 0.6446453043760265,
+    "confusion_matrix": [
+      [
+        19,
+        4,
+        17
+      ],
+      [
+        5,
+        32,
+        3
+      ],
+      [
+        14,
+        0,
+        26
+      ]
+    ],
+    "per_class": {
+      "Health": {
+        "precision": 0.5,
+        "recall": 0.475,
+        "f1-score": 0.48717948717948717,
+        "support": 40.0
+      },
+      "Other": {
+        "precision": 0.8888888888888888,
+        "recall": 0.8,
+        "f1-score": 0.8421052631578947,
+        "support": 40.0
+      },
+      "Rust": {
+        "precision": 0.5652173913043478,
+        "recall": 0.65,
+        "f1-score": 0.6046511627906976,
+        "support": 40.0
+      },
+      "accuracy": 0.6416666666666667,
+      "macro avg": {
+        "precision": 0.6513687600644121,
+        "recall": 0.6416666666666666,
+        "f1-score": 0.6446453043760265,
+        "support": 120.0
+      },
+      "weighted avg": {
+        "precision": 0.6513687600644122,
+        "recall": 0.6416666666666667,
+        "f1-score": 0.6446453043760265,
+        "support": 120.0
+      }
+    }
+  },
+  "majority_baseline_accuracy": 0.3333333333333333,
+  "manifest_sha256": "5d594401d672ff12d82759e2448d8b5d472d3c94523c61b0fcbf86dcf6761fbe",
+  "preprocessing_sha256": "205922911c63472e3af5cda0288b9b139254405982e64302797c99576075d232",
+  "checkpoint_sha256": "cf28a37752728f3d2e301fde8de4bfd353ac8013d262aa22ee68b31e2a1c3834",
+  "limitations": [
+    "Patch labels, not pixel segmentation or chemical stress labels.",
+    "Development validation also selects the checkpoint; not an independent test.",
+    "Neighbouring source patches may share scenes; no verified farm/date grouping.",
+    "Softmax scores are uncalibrated. No three-week forecast or real farm heatmap."
+  ]
+}
