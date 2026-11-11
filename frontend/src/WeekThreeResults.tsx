@@ -34,8 +34,8 @@ export default function WeekThreeResults() {
     return () => controller.abort();
   }, []);
   return (
-    <section className="info-card model-results" id="week-three">
-      <span className="eyebrow">WEEK 3 / REAL PATCH CLASSIFICATION</span>
+    <section className="info-card model-results" id="model-comparison">
+      <span className="eyebrow">MODEL COMPARISON / PATCH CLASSIFICATION</span>
       <h2>Did self-attention help?</h2>
       {error && <p role="alert">{error}</p>}
       {!results && !error && <p>Loading comparison…</p>}
@@ -53,8 +53,8 @@ export default function WeekThreeResults() {
               </thead>
               <tbody>
                 {[
-                  ["Week 3 CNN + transformer", results.current.transformer],
-                  ["Week 2 CNN", results.previous.cnn],
+                  ["CNN + transformer", results.current.transformer],
+                  ["Hybrid CNN", results.previous.cnn],
                   ["Logistic baseline", results.current.baseline],
                 ].map(([name, score]) => {
                   const metric = score as Scores;
@@ -85,7 +85,7 @@ export default function WeekThreeResults() {
             </p>
           ))}
           <p>
-            Macro F1 change versus Week 2:{" "}
+            Macro F1 change versus the hybrid CNN:{" "}
             {(
               results.current.transformer.macro_f1 -
               results.previous.cnn.macro_f1

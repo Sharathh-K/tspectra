@@ -46,7 +46,7 @@ export default function AnalyticsPanel({
       id="analytics"
       aria-label="Simulation analytics"
     >
-      <span className="eyebrow">WEEK 3 / SIMULATION ANALYTICS</span>
+      <span className="eyebrow">SIMULATION ANALYTICS</span>
       <h2>How much demonstration area is flagged?</h2>
       <p>
         <strong>{flagged.toFixed(1)} acres</strong> of {total.toFixed(1)}{" "}

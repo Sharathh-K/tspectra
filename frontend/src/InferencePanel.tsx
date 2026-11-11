@@ -73,7 +73,7 @@ export default function InferencePanel() {
   }
   return (
     <section className="info-card" id="inference">
-      <span className="eyebrow">WEEK 4 / LOCAL MODEL SERVICE</span>
+      <span className="eyebrow">LOCAL MODEL SERVICE</span>
       <h2>Predict a patch or tile a compatible TIFF</h2>
       <p>
         Use the supplied dataset’s band order and scale. RGB photos and

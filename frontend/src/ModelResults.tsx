@@ -31,9 +31,7 @@ export default function ModelResults() {
       .then(setReport)
       .catch((error) => {
         if (error.name !== "AbortError")
-          setError(
-            "Training report unavailable. Run the Week 2 training command.",
-          );
+          setError("Classifier performance report unavailable.");
       });
     return () => controller.abort();
   }, []);

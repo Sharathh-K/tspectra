@@ -23,20 +23,18 @@ export default function MidReview() {
   useEffect(() => {
     fetch("/mid-review.json")
       .then((response) => {
-        if (!response.ok)
-          throw new Error(
-            "Audit report unavailable. Run the mid-project audit.",
-          );
+        if (!response.ok) throw new Error("Data quality report unavailable.");
         return response.json();
       })
       .then(setAudit)
       .catch((error) => setError(String(error)));
   }, []);
   return (
-    <section className="info-card" id="mid-review">
-      <h2>Mid-project review</h2>
+    <section className="info-card" id="data-quality">
+      <h2>Data quality & map alignment</h2>
       <p>
-        Checking our data, memory use, and demonstration grid before Week 3.
+        Dataset integrity, memory measurements, and demonstration grid
+        alignment.
       </p>
       {error && <p role="alert">{error}</p>}
       {!audit && !error && <p>Loading audit results…</p>}

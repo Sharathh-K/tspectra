@@ -39,21 +39,19 @@ export default function App() {
           <span className="brand-icon">◈</span> TerraSpectra
           <span className="brand-dot">.</span>
         </a>
-        <div className="workspace">
-          INTERNSHIP WORKSPACE <span>02</span>
-        </div>
+        <div className="workspace">AGRICULTURE WORKSPACE</div>
         <nav aria-label="Main navigation">
           <a href="#inference">
-            ⇧ <span>Week 4 inference</span>
+            ⇧ <span>Inference</span>
           </a>
-          <a href="#week-three">
-            ◈ <span>Week 3 transformer</span>
+          <a href="#model-comparison">
+            ◈ <span>Model comparison</span>
           </a>
           <a href="#analytics">
             ▥ <span>Analytics</span>
           </a>
-          <a href="#mid-review">
-            ✓ <span>Mid-project review</span>
+          <a href="#data-quality">
+            ✓ <span>Data quality</span>
           </a>
           <a className="active" href="#overview">
             ◫ <span>Farm overview</span>
@@ -78,7 +76,7 @@ export default function App() {
           </p>
         </div>
         <div className="sidebar-footer">
-          <span className="status-dot" /> Week 4 · API and timeline
+          <span className="status-dot" /> Crop health analytics
         </div>
       </aside>
       <main id="overview">
@@ -93,7 +91,7 @@ export default function App() {
             </p>
           </div>
           <span className="week-badge">
-            WEEK 02 <span>Model & heatmap</span>
+            EXPLORER <span>Models & maps</span>
           </span>
         </header>
         <section className="metrics" aria-label="Dataset overview">
@@ -172,23 +170,19 @@ export default function App() {
               . This is not disease accuracy.
             </small>
           </section>
-          <section className="info-card" id="week-two">
-            <span className="eyebrow">WEEK 2 SCOPE</span>
-            <h2>The classifier and the overlay.</h2>
+          <section className="info-card" id="capabilities">
+            <span className="eyebrow">EXPLORE THE PLATFORM</span>
+            <h2>Classification and visualization.</h2>
             <ul className="checklist">
-              <li>Train a compact hybrid 3D–2D CNN</li>
-              <li>Compare it with a simple baseline</li>
-              <li>Render a grid from simulated JSON</li>
+              <li>Classify compatible hyperspectral patches</li>
+              <li>Compare model performance</li>
+              <li>Explore the simulated farm grid</li>
               <li>Inspect cells, filter scores and adjust opacity</li>
             </ul>
-            <p className="next-step">
-              UP NEXT{" "}
-              <span>Final review · Summarize results and limitations</span>
-            </p>
           </section>
         </div>
         <footer>
-          TerraSpectra · Internship project{" "}
+          TerraSpectra · Crop health analytics{" "}
           <span>Data first. Clear assumptions. Measurable progress.</span>
         </footer>
       </main>
