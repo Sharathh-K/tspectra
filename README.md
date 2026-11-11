@@ -76,6 +76,15 @@ PYTHONPATH=src python -m terraspectra.final_review --zip "/path/to/beyond-visibl
 
 API uploads are limited to 128 MiB and 256 tiles. Inputs need compatible band ordering and radiometry, not merely 125 bands. Outputs retain source coordinates without certifying them. See [API and tiling details](docs/WEEK_4_GUIDE.md).
 
+## Weekly internship write-ups
+
+Four separate reports summarize the completed work, approach, recorded results and limitations:
+
+1. [Week 1 — Data preparation and map foundation](docs/weekly-writeups/WEEK_1.md)
+2. [Week 2 — Hybrid CNN and heatmap rendering](docs/weekly-writeups/WEEK_2.md)
+3. [Week 3 — Vision Transformer and analytics](docs/weekly-writeups/WEEK_3.md)
+4. [Week 4 — Inference API, tiling and interface polish](docs/weekly-writeups/WEEK_4.md)
+
 ## Learning materials
 
 | Topic | Guide | Notebook |
