@@ -6,6 +6,19 @@ type Prediction = {
   tiles: { predicted_class: string; scores: Record<string, number> }[];
 };
 export default function InferencePanel() {
+  const [service, setService] = useState("Service status not checked.");
+  const [checking, setChecking] = useState(false);
+  async function checkService() {
+    setChecking(true);
+    try {
+      const response = await fetch("/api/health", {signal: AbortSignal.timeout(5000)});
+      if (!response.ok) throw new Error();
+      const data = await response.json();
+      if (data.status !== "ready") throw new Error();
+      setService(data.busy ? "Service is busy. Retry shortly." : "Service ready · CPU · saved CNN + Transformer");
+    } catch { setService("Service unavailable. Start the local API on port 8000, then retry."); }
+    finally { setChecking(false); }
+  }
   const [file, setFile] = useState<File | null>(null);
   const [mode, setMode] = useState("predict");
   const [busy, setBusy] = useState(false);
@@ -80,6 +93,9 @@ export default function InferencePanel() {
         arbitrary satellite images are not compatible. Maximum upload: 128 MiB /
         256 tiles.
       </p>
+      <p role="status">{service}</p>
+      <button disabled={checking} onClick={checkService}>{checking ? "Checking…" : "Check service"}</button>
+      <details className="usage-help"><summary>Which input should I choose?</summary><p>Example: use an original 64 × 64 TIFF from train/Health for patch mode. Its folder label is a reference answer; the model can still predict another class. Tiled mode accepts a larger raster only when its spectral bands and sensor scale match the training data. The ZIP contains predictions.tif and summary.json.</p></details>
       <div className="heatmap-controls">
         <label>
           TIFF{" "}

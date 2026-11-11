@@ -4,12 +4,15 @@ An educational hyperspectral crop-patch classifier, local tiled-inference API, a
 
 **Start here:** [Final review](docs/FINAL_REVIEW.md) · [Final notebook](notebooks/06_final_review.ipynb) · [Mentor walkthrough](docs/MENTOR_WALKTHROUGH.md) · [Research](docs/FINAL_RESEARCH.md)
 
+**Dashboard help:** [User guide with examples](docs/DASHBOARD_GUIDE.md) · [Requirements reconciliation and research](docs/REQUIREMENTS_RECONCILIATION.md)
+
 ## What it does
 
 - Prepares 900 TIFF patches: 125 usable spectral bands → 16 PCA components.
 - Classifies Health / Other / Rust using saved compact CNN and CNN–transformer models.
 - Serves local TIFF predictions through FastAPI and stitches tile scores into output rasters.
-- Provides separate **Overview**, **Map & analytics**, **Inference**, **Model performance**, and **Data quality** pages.
+- Provides separate **Overview**, **Map & analytics**, **Inference**, **Model performance**, **Data quality**, and **Dashboard guide** pages.
+- Includes six real-sample false-colour previews and an interactive 125-band mean-signal explorer.
 - Shows explicitly simulated farm scores, acreage and four timeline stages.
 
 The transformer achieved **70.8% accuracy / 0.707 macro F1** on 120 development-validation patches. Those examples also selected the checkpoint; this is not independent test performance. Chemical diagnosis, verified farm disease mapping and three-week forecasting are unsupported. Tiled scores are patch classifications, not pixel segmentation.

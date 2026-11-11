@@ -4,6 +4,8 @@ import ModelResults from "./ModelResults";
 import InferencePanel from "./InferencePanel";
 import WeekThreeResults from "./WeekThreeResults";
 import MidReview from "./MidReview";
+import SpectralExplorer from "./SpectralExplorer";
+import DashboardGuide from "./DashboardGuide";
 
 type Summary = {
   files: number;
@@ -19,6 +21,7 @@ const pages = {
   inference: ["Inference", "Classify a compatible TIFF."],
   models: ["Model performance", "Compare measured results."],
   data: ["Data quality", "Understand the data behind the model."],
+  guide: ["Dashboard guide", "Your guide to the workspace."],
 } as const;
 type Page = keyof typeof pages;
 function currentPage(): Page {
@@ -129,6 +132,7 @@ export default function App() {
             {error && <p role="alert">{error}</p>}
             <section className="info-card">
               <h2>Choose your workspace</h2>
+              <a className="text-link" href="#/guide">First visit? Follow the guided walkthrough →</a>
               <p>
                 Run the saved classifier on compatible TIFFs, compare model
                 results, or explore the simulated farm grid.
@@ -151,6 +155,7 @@ export default function App() {
             </section>
           </>
         )}
+        {page === "guide" && <DashboardGuide />}
         {page === "map" && (
           <>
             <p className="notice">
@@ -207,6 +212,7 @@ export default function App() {
               </small>
             </section>
 
+            <SpectralExplorer />
             <MidReview />
           </>
         )}

@@ -30,7 +30,7 @@ app = FastAPI(title='TerraSpectra local inference', version='0.4.0', lifespan=li
 
 @app.get('/api/health')
 def health():
-    return {'status': 'ready', 'model': 'Week 3 CNN + transformer', 'device': 'cpu',
+    return {'status': 'ready', 'model': 'CNN + transformer', 'device': 'cpu',
             'max_upload_mib': 128, 'max_tiles': MAX_TILES, 'busy': app.state.busy}
 
 

@@ -808,3 +808,23 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Guided exploration, with the existing visual language. */
+main { min-width: 0; }
+.text-link { color: #c1ee94; text-decoration: underline; text-underline-offset: 4px; }
+.guide-stack { display: grid; gap: 18px; }
+.spectral-explorer { margin: 22px 0; }
+.spectral-layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); align-items: center; gap: 24px; }
+.spectral-layout figure { margin: 20px 0; }
+.sample-preview { width: 100%; max-width: 210px; image-rendering: pixelated; border-radius: 6px; }
+.spectral-layout figcaption { font-size: 11px; color: #aab9ab; overflow-wrap: anywhere; }
+.spectral-explorer select { max-width: 100%; margin: 12px; padding: 8px; color: #e9eee9; background: #243628; }
+.spectral-explorer svg { width: 100%; }
+.usage-help { margin: 18px 0; padding: 12px; border: 1px solid #52684c; border-radius: 6px; }
+summary { cursor: pointer; }
+@media (max-width: 760px) {
+  nav { flex-wrap: wrap; }
+  .spectral-layout { grid-template-columns: 1fr; gap: 0; }
+  .pipeline { flex-wrap: wrap; }
+  .heatmap-controls label { flex-wrap: wrap; max-width: 100%; }
+}
