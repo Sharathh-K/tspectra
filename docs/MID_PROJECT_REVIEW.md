@@ -100,6 +100,6 @@ For real-farm validation, obtain a trusted source CRS, georeferenced image trans
 - `reports/mid_review/audit.json`: measured results and machine details.
 - `notebooks/03_mid_project_review.ipynb`: beginner-friendly walkthrough and charts.
 - `docs/MID_PROJECT_RESEARCH.md`: primary sources and decisions.
-- Dashboard → **Mid-project review**: short summary of the same report.
+- Dashboard → **Data quality**: short summary of the same report.
 
 The raw dataset stays local and ignored by Git. The report, source, notebook and small frontend JSON are committed. Re-run the audit after changing input data, pooling, model architecture or map geometry.

@@ -32,7 +32,7 @@ pnpm install
 pnpm dev
 ```
 
-Restart an already running frontend after the new Vite proxy configuration is pulled. Vite forwards `/api` requests to port 8000. Open the displayed dashboard URL and choose **Week 4 inference**. The diagram and simulation work without a Mapbox token. Satellite tiles still require your public token.
+Restart an already running frontend after the new Vite proxy configuration is pulled. Vite forwards `/api` requests to port 8000. Open the displayed dashboard URL and choose **Inference**. The diagram and simulation work without a Mapbox token. Satellite tiles still require your public token.
 
 API documentation is at `http://127.0.0.1:8000/docs`. Health information is at `http://127.0.0.1:8000/api/health`.
 

@@ -42,7 +42,7 @@ export default function ModelResults() {
       </span>
       <h2>A small model, measured honestly.</h2>
       <p>
-        Results below use the 120 labelled validation patches. The map above
+        Results below use the 120 labelled validation patches. The map workspace
         uses independent simulated data.
       </p>
       {error && <p role="alert">{error}</p>}

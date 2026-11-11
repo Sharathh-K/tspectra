@@ -779,3 +779,32 @@ input:focus-visible {
   outline: 2px solid #b9ea8c;
   outline-offset: 3px;
 }
+
+.workspace-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.workspace-cards a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid #52684c;
+  border-radius: 10px;
+  color: #e5eadf;
+  text-decoration: none;
+}
+.workspace-cards a:hover {
+  background: #25392c;
+}
+.workspace-cards span {
+  font-size: 14px;
+  color: #b8c8b9;
+}
+@media (max-width: 700px) {
+  .workspace-cards {
+    grid-template-columns: 1fr;
+  }
+}

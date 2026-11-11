@@ -1,0 +1,329 @@
+{
+  "generated_at_utc": "2026-11-11T10:52:46.450753+00:00",
+  "scope": "Recheck existing development evidence, not an independent test or retraining.",
+  "dataset": {
+    "files_checked": 900,
+    "zip_sha256": "a954166c01f0b3ac496a11c4cc752aa9c3cd1087d4402136906f74ccd67edb61",
+    "raw_band_counts": {
+      "125": 741,
+      "126": 159
+    },
+    "recognized_epsg_counts": {
+      "None": 900
+    },
+    "split_counts": {
+      "train": 480,
+      "validation": 120,
+      "unlabelled": 300
+    },
+    "exact_duplicate_hash_overlap": {
+      "train / validation": 0,
+      "train / unlabelled": 0,
+      "unlabelled / validation": 0
+    },
+    "integrity_passed": true,
+    "processed_shape": [
+      64,
+      64,
+      16
+    ],
+    "processed_dtype": "float32",
+    "scope": "Exact-byte checks cannot rule out neighbouring-patch or source-image leakage."
+  },
+  "models": [
+    {
+      "name": "Compact hybrid 3D\u20132D CNN",
+      "artifact": "models/week2/hybrid_cnn.pt",
+      "fingerprints": {
+        "manifest_matches": true,
+        "checkpoint_matches": true,
+        "preprocessing_matches": true
+      },
+      "recomputed": {
+        "accuracy": 0.6583333333333333,
+        "macro_f1": 0.6346216889588251,
+        "confusion_matrix": [
+          [
+            12,
+            8,
+            20
+          ],
+          [
+            3,
+            34,
+            3
+          ],
+          [
+            7,
+            0,
+            33
+          ]
+        ],
+        "per_class": {
+          "Health": {
+            "precision": 0.5454545454545454,
+            "recall": 0.3,
+            "f1-score": 0.3870967741935484,
+            "support": 40.0
+          },
+          "Other": {
+            "precision": 0.8095238095238095,
+            "recall": 0.85,
+            "f1-score": 0.8292682926829268,
+            "support": 40.0
+          },
+          "Rust": {
+            "precision": 0.5892857142857143,
+            "recall": 0.825,
+            "f1-score": 0.6875,
+            "support": 40.0
+          },
+          "accuracy": 0.6583333333333333,
+          "macro avg": {
+            "precision": 0.648088023088023,
+            "recall": 0.6583333333333333,
+            "f1-score": 0.6346216889588251,
+            "support": 120.0
+          },
+          "weighted avg": {
+            "precision": 0.648088023088023,
+            "recall": 0.6583333333333333,
+            "f1-score": 0.6346216889588251,
+            "support": 120.0
+          }
+        }
+      },
+      "saved_confusion_matrix_reproduced": true
+    },
+    {
+      "name": "Compact CNN + vision transformer",
+      "artifact": "models/week3/hybrid_vit.pt",
+      "fingerprints": {
+        "manifest_matches": true,
+        "checkpoint_matches": true,
+        "preprocessing_matches": true
+      },
+      "recomputed": {
+        "accuracy": 0.7083333333333334,
+        "macro_f1": 0.7065527065527065,
+        "confusion_matrix": [
+          [
+            22,
+            7,
+            11
+          ],
+          [
+            5,
+            34,
+            1
+          ],
+          [
+            11,
+            0,
+            29
+          ]
+        ],
+        "per_class": {
+          "Health": {
+            "precision": 0.5789473684210527,
+            "recall": 0.55,
+            "f1-score": 0.5641025641025641,
+            "support": 40.0
+          },
+          "Other": {
+            "precision": 0.8292682926829268,
+            "recall": 0.85,
+            "f1-score": 0.8395061728395061,
+            "support": 40.0
+          },
+          "Rust": {
+            "precision": 0.7073170731707317,
+            "recall": 0.725,
+            "f1-score": 0.7160493827160493,
+            "support": 40.0
+          },
+          "accuracy": 0.7083333333333334,
+          "macro avg": {
+            "precision": 0.7051775780915704,
+            "recall": 0.7083333333333334,
+            "f1-score": 0.7065527065527065,
+            "support": 120.0
+          },
+          "weighted avg": {
+            "precision": 0.7051775780915704,
+            "recall": 0.7083333333333334,
+            "f1-score": 0.7065527065527065,
+            "support": 120.0
+          }
+        }
+      },
+      "saved_confusion_matrix_reproduced": true
+    }
+  ],
+  "synthetic_gis": {
+    "cells_checked": 80,
+    "max_corner_error_degrees": 0.0,
+    "tolerance_degrees": 1e-09,
+    "boundary_matches": true,
+    "center_roundtrips_passed": true,
+    "grid_alignment_passed": true,
+    "crs": "EPSG:4326",
+    "real_farm_alignment": "NOT VALIDATED: synthetic boundary, no surveyed control points",
+    "browser_camera_alignment": "NOT VERIFIED: requires live Mapbox pan/zoom/tilt check",
+    "row_convention": "Mock rows start south; raster rows start north."
+  },
+  "previous_api_demonstration": {
+    "health": {
+      "status": "ready",
+      "model": "Week 3 CNN + transformer",
+      "device": "cpu",
+      "max_upload_mib": 128,
+      "max_tiles": 256,
+      "busy": false
+    },
+    "patch_status": 200,
+    "patch_response": {
+      "schema_version": 1,
+      "model": "Week 3 CNN + vision transformer",
+      "width": 64,
+      "height": 64,
+      "tiles": [
+        {
+          "row": 0,
+          "column": 0,
+          "height": 64,
+          "width": 64,
+          "edge_padded": false,
+          "class_id": 0,
+          "predicted_class": "Health",
+          "scores": {
+            "Health": 0.4834069311618805,
+            "Other": 0.47769057750701904,
+            "Rust": 0.038902394473552704
+          }
+        }
+      ],
+      "tile_count": 1,
+      "source_crs": "GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"metre\",1],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST]]",
+      "source_transform": [
+        0.00145495,
+        0.0,
+        5.790797599999999,
+        0.0,
+        -0.00145495,
+        -6.319197599999999
+      ],
+      "band_order": [
+        "Health",
+        "Other",
+        "Rust",
+        "class_id"
+      ],
+      "note": "Tile-level classification, not pixel segmentation. Scores uncalibrated. Matching band count alone does not establish sensor compatibility. Source georeferencing is copied, not validated. Edge padding is experimental."
+    },
+    "tile_status": 200,
+    "download_files": [
+      "predictions.tif",
+      "summary.json"
+    ],
+    "download_tile_count": 6,
+    "download_dimensions": [
+      97,
+      130
+    ],
+    "scope": "Successful local API usage examples; not a load or failure-case test suite."
+  },
+  "previous_memory_audit": [
+    {
+      "batch_size": 1,
+      "steps": 3,
+      "losses": [
+        1.162776231765747,
+        0.9681167006492615,
+        0.8965505957603455
+      ],
+      "input_shape": [
+        1,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.015625,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 161.21875,
+      "seconds": 3.4913341250000007,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 8,
+      "steps": 3,
+      "losses": [
+        1.113737940788269,
+        0.9549397826194763,
+        0.7931556701660156
+      ],
+      "input_shape": [
+        8,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.125,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 225.359375,
+      "seconds": 1.644419584,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 16,
+      "steps": 3,
+      "losses": [
+        1.1126456260681152,
+        0.9475609064102173,
+        0.7779483795166016
+      ],
+      "input_shape": [
+        16,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.25,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 299.90625,
+      "seconds": 1.3044868749999998,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 32,
+      "steps": 3,
+      "losses": [
+        1.1303459405899048,
+        0.9696086645126343,
+        0.8098912239074707
+      ],
+      "input_shape": [
+        32,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.5,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 307.0,
+      "seconds": 1.2935407500000002,
+      "finite_loss_and_gradients": true
+    }
+  ],
+  "limitations": [
+    "Checkpoint selection used these same validation examples.",
+    "No verified source-scene grouping or independent farm test.",
+    "Map and timeline are synthetic; no chemical or forecast targets.",
+    "CPU prototype; no GPU or giant-scene throughput certification.",
+    "Previously recorded API and memory results are historical, not rerun by this command."
+  ]
+}

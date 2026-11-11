@@ -79,7 +79,7 @@ Accuracy counts correct predictions. Macro F1 gives each of the three classes eq
 
 This run changes the architecture and adds attention. It is not a controlled attention-only ablation. A single seed and a development set used for checkpoint selection cannot establish statistical significance or performance on unseen farms. Neighbouring-source-patch leakage remains possible. Better scores here are encouraging experimental evidence only.
 
-Open `notebooks/04_week_three_transformer.ipynb` in VS Code, select `.venv`, and run the cells. It loads the small saved report/model by default; optional retraining is off. For the dashboard, follow the existing frontend setup in the README, refresh and open **Week 3 transformer** or **Analytics**. The diagram works without a Mapbox token; satellite rendering still requires one.
+Open `notebooks/04_week_three_transformer.ipynb` in VS Code, select `.venv`, and run the cells. It loads the small saved report/model by default; optional retraining is off. For the dashboard, follow the existing frontend setup in the README, refresh and open **Model performance** or **Analytics**. The diagram works without a Mapbox token; satellite rendering still requires one.
 
 ## What to present
 
