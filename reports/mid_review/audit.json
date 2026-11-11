@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-11T09:16:55.218509+00:00",
+  "environment": {
+    "python": "3.9.6",
+    "torch": "2.8.0",
+    "platform": "macOS-15.2-arm64-arm-64bit",
+    "device": "CPU"
+  },
+  "extraction": {
+    "files_checked": 900,
+    "zip_sha256": "a954166c01f0b3ac496a11c4cc752aa9c3cd1087d4402136906f74ccd67edb61",
+    "raw_band_counts": {
+      "125": 741,
+      "126": 159
+    },
+    "recognized_epsg_counts": {
+      "None": 900
+    },
+    "split_counts": {
+      "train": 480,
+      "validation": 120,
+      "unlabelled": 300
+    },
+    "exact_duplicate_hash_overlap": {
+      "train / validation": 0,
+      "train / unlabelled": 0,
+      "unlabelled / validation": 0
+    },
+    "integrity_passed": true,
+    "processed_shape": [
+      64,
+      64,
+      16
+    ],
+    "processed_dtype": "float32",
+    "scope": "Exact-byte checks cannot rule out neighbouring-patch or source-image leakage."
+  },
+  "gis": {
+    "cells_checked": 80,
+    "max_corner_error_degrees": 0.0,
+    "tolerance_degrees": 1e-09,
+    "boundary_matches": true,
+    "center_roundtrips_passed": true,
+    "grid_alignment_passed": true,
+    "crs": "EPSG:4326",
+    "real_farm_alignment": "NOT VALIDATED: synthetic boundary, no surveyed control points",
+    "browser_camera_alignment": "NOT VERIFIED: requires live Mapbox pan/zoom/tilt check",
+    "row_convention": "Mock rows start south; raster rows start north."
+  },
+  "memory_trials": [
+    {
+      "batch_size": 1,
+      "steps": 3,
+      "losses": [
+        1.162776231765747,
+        0.9681167006492615,
+        0.8965505957603455
+      ],
+      "input_shape": [
+        1,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.015625,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 161.21875,
+      "seconds": 3.4913341250000007,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 8,
+      "steps": 3,
+      "losses": [
+        1.113737940788269,
+        0.9549397826194763,
+        0.7931556701660156
+      ],
+      "input_shape": [
+        8,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.125,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 225.359375,
+      "seconds": 1.644419584,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 16,
+      "steps": 3,
+      "losses": [
+        1.1126456260681152,
+        0.9475609064102173,
+        0.7779483795166016
+      ],
+      "input_shape": [
+        16,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.25,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 299.90625,
+      "seconds": 1.3044868749999998,
+      "finite_loss_and_gradients": true
+    },
+    {
+      "batch_size": 32,
+      "steps": 3,
+      "losses": [
+        1.1303459405899048,
+        0.9696086645126343,
+        0.8098912239074707
+      ],
+      "input_shape": [
+        32,
+        1,
+        16,
+        16,
+        16
+      ],
+      "input_mib": 0.5,
+      "cached_train_mib": 7.5,
+      "peak_process_rss_mib": 307.0,
+      "seconds": 1.2935407500000002,
+      "finite_loss_and_gradients": true
+    }
+  ],
+  "memory_scope": "Fresh CPU process per batch, three optimizer steps, all 480 training inputs cached. Peak RSS includes runtime and libraries; input bytes are not total memory. No GPU or full-resolution satellite-cube capacity claim.",
+  "recommended_batch_size": 16
+}

@@ -1,3 +1,7 @@
+# Mid-project review added
+
+Start with [the review guide](docs/MID_PROJECT_REVIEW.md), [the notebook](notebooks/03_mid_project_review.ipynb), and [the research notes](docs/MID_PROJECT_RESEARCH.md). The dashboard now includes extraction, CPU memory, and synthetic grid validation results. Real-farm registration and live browser alignment remain unverified.
+
 # TerraSpectra — Weeks 1 and 2
 
 Hyperspectral wheat image preparation, a compact trained 3D–2D CNN, and a React /

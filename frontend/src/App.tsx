@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FarmMap from "./FarmMap";
 import ModelResults from "./ModelResults";
+import MidReview from "./MidReview";
 
 type Summary = {
   files: number;
@@ -40,6 +41,9 @@ export default function App() {
           INTERNSHIP WORKSPACE <span>02</span>
         </div>
         <nav aria-label="Main navigation">
+          <a href="#mid-review">
+            ✓ <span>Mid-project review</span>
+          </a>
           <a className="active" href="#overview">
             ◫ <span>Farm overview</span>
             <span>↗</span>
@@ -63,7 +67,7 @@ export default function App() {
           </p>
         </div>
         <div className="sidebar-footer">
-          <span className="status-dot" /> Week 2 · Development
+          <span className="status-dot" /> Mid-project review
         </div>
       </aside>
       <main id="overview">
@@ -117,6 +121,7 @@ export default function App() {
           infected pixels or measured farm risk.
         </p>
         <ModelResults />
+        <MidReview />
         <div className="lower-grid">
           <section className="info-card" id="preparation">
             <span className="eyebrow">DATA PREPARATION</span>
