@@ -1,0 +1,61 @@
+{
+  "health": {
+    "status": "ready",
+    "model": "Week 3 CNN + transformer",
+    "device": "cpu",
+    "max_upload_mib": 128,
+    "max_tiles": 256,
+    "busy": false
+  },
+  "patch_status": 200,
+  "patch_response": {
+    "schema_version": 1,
+    "model": "Week 3 CNN + vision transformer",
+    "width": 64,
+    "height": 64,
+    "tiles": [
+      {
+        "row": 0,
+        "column": 0,
+        "height": 64,
+        "width": 64,
+        "edge_padded": false,
+        "class_id": 0,
+        "predicted_class": "Health",
+        "scores": {
+          "Health": 0.4834069311618805,
+          "Other": 0.47769057750701904,
+          "Rust": 0.038902394473552704
+        }
+      }
+    ],
+    "tile_count": 1,
+    "source_crs": "GEOGCS[\"unknown\",DATUM[\"unknown\",SPHEROID[\"unretrievable - using WGS84\",6378137,298.257223563]],PRIMEM[\"Greenwich\",0],UNIT[\"metre\",1],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST]]",
+    "source_transform": [
+      0.00145495,
+      0.0,
+      5.790797599999999,
+      0.0,
+      -0.00145495,
+      -6.319197599999999
+    ],
+    "band_order": [
+      "Health",
+      "Other",
+      "Rust",
+      "class_id"
+    ],
+    "note": "Tile-level classification, not pixel segmentation. Scores uncalibrated. Matching band count alone does not establish sensor compatibility. Source georeferencing is copied, not validated. Edge padding is experimental."
+  },
+  "tile_status": 200,
+  "download_files": [
+    "predictions.tif",
+    "summary.json"
+  ],
+  "download_tile_count": 6,
+  "download_dimensions": [
+    97,
+    130
+  ],
+  "scope": "Successful local API usage examples; not a load or failure-case test suite."
+}

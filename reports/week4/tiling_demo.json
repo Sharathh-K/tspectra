@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "model": "Week 3 CNN + vision transformer",
+  "width": 130,
+  "height": 97,
+  "tiles": [
+    {
+      "row": 0,
+      "column": 0,
+      "height": 64,
+      "width": 64,
+      "edge_padded": false,
+      "class_id": 0,
+      "predicted_class": "Health",
+      "scores": {
+        "Health": 0.4834069311618805,
+        "Other": 0.47769057750701904,
+        "Rust": 0.038902394473552704
+      }
+    },
+    {
+      "row": 0,
+      "column": 64,
+      "height": 64,
+      "width": 64,
+      "edge_padded": false,
+      "class_id": 1,
+      "predicted_class": "Other",
+      "scores": {
+        "Health": 0.09940870851278305,
+        "Other": 0.8976324796676636,
+        "Rust": 0.0029588767793029547
+      }
+    },
+    {
+      "row": 0,
+      "column": 128,
+      "height": 64,
+      "width": 2,
+      "edge_padded": true,
+      "class_id": 0,
+      "predicted_class": "Health",
+      "scores": {
+        "Health": 0.5118449926376343,
+        "Other": 0.04329153895378113,
+        "Rust": 0.4448634386062622
+      }
+    },
+    {
+      "row": 64,
+      "column": 0,
+      "height": 33,
+      "width": 64,
+      "edge_padded": true,
+      "class_id": 1,
+      "predicted_class": "Other",
+      "scores": {
+        "Health": 0.10110829770565033,
+        "Other": 0.8959397077560425,
+        "Rust": 0.0029520252719521523
+      }
+    },
+    {
+      "row": 64,
+      "column": 64,
+      "height": 33,
+      "width": 64,
+      "edge_padded": true,
+      "class_id": 0,
+      "predicted_class": "Health",
+      "scores": {
+        "Health": 0.543408215045929,
+        "Other": 0.07030011713504791,
+        "Rust": 0.3862917125225067
+      }
+    },
+    {
+      "row": 64,
+      "column": 128,
+      "height": 33,
+      "width": 2,
+      "edge_padded": true,
+      "class_id": 1,
+      "predicted_class": "Other",
+      "scores": {
+        "Health": 0.19416789710521698,
+        "Other": 0.8022700548171997,
+        "Rust": 0.0035620788112282753
+      }
+    }
+  ],
+  "tile_count": 6,
+  "source_crs": "EPSG:4326",
+  "source_transform": [
+    6.153846153853675e-05,
+    0.0,
+    77.591,
+    0.0,
+    -6.185567010309513e-05,
+    13.158
+  ],
+  "band_order": [
+    "Health",
+    "Other",
+    "Rust",
+    "class_id"
+  ],
+  "note": "Tile-level classification, not pixel segmentation. Scores uncalibrated. Matching band count alone does not establish sensor compatibility. Source georeferencing is copied, not validated. Edge padding is experimental.",
+  "elapsed_seconds_including_model_load": 0.24682641600000466,
+  "demonstration": "Artificial 130\u00d797 mosaic; not a real satellite or temporal scene",
+  "output_shape_bhw": [
+    4,
+    97,
+    130
+  ]
+}

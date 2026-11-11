@@ -22,7 +22,23 @@ export default function FarmMap() {
   const [opacity, setOpacity] = useState(0.75);
   const [threshold, setThreshold] = useState(0);
   const [selected, setSelected] = useState<Cell | null>(null);
-  const [data, setData] = useState<MockHeatmap | null>(null);
+  const [sourceData, setData] = useState<MockHeatmap | null>(null);
+  const [frame, setFrame] = useState(2);
+  // Invented stages, not dated observations or forecasts.
+  const data = useMemo(
+    () =>
+      sourceData
+        ? {
+            ...sourceData,
+            cells: sourceData.cells.map((cell) => ({
+              ...cell,
+              score: Math.min(1, cell.score * [0.6, 0.8, 1, 1.15][frame]),
+            })),
+          }
+        : null,
+    [sourceData, frame],
+  );
+  useEffect(() => setSelected(null), [frame]);
   const [dataError, setDataError] = useState("");
   const [mapFailed, setMapFailed] = useState(false);
   const [status, setStatus] = useState("Loading satellite map…");
@@ -144,6 +160,19 @@ export default function FarmMap() {
       aria-label="Simulated heatmap workspace"
     >
       <div className="heatmap-controls">
+        <label>
+          Simulated timeline · stage {frame + 1} of 4
+          <input
+            aria-label="Simulated timeline stage"
+            type="range"
+            min="0"
+            max="3"
+            step="1"
+            value={frame}
+            onChange={(event) => setFrame(Number(event.target.value))}
+          />
+        </label>
+        <span>Invented progression · no observation dates or forecasts</span>
         <label>
           <input
             type="checkbox"

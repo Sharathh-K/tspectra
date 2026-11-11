@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FarmMap from "./FarmMap";
 import ModelResults from "./ModelResults";
+import InferencePanel from "./InferencePanel";
 import WeekThreeResults from "./WeekThreeResults";
 import MidReview from "./MidReview";
 
@@ -42,6 +43,9 @@ export default function App() {
           INTERNSHIP WORKSPACE <span>02</span>
         </div>
         <nav aria-label="Main navigation">
+          <a href="#inference">
+            ⇧ <span>Week 4 inference</span>
+          </a>
           <a href="#week-three">
             ◈ <span>Week 3 transformer</span>
           </a>
@@ -74,7 +78,7 @@ export default function App() {
           </p>
         </div>
         <div className="sidebar-footer">
-          <span className="status-dot" /> Week 3 · Attention and analytics
+          <span className="status-dot" /> Week 4 · API and timeline
         </div>
       </aside>
       <main id="overview">
@@ -127,6 +131,7 @@ export default function App() {
           are invented for UI development. They are not model predictions,
           infected pixels or measured farm risk.
         </p>
+        <InferencePanel />
         <WeekThreeResults />
         <ModelResults />
         <MidReview />
@@ -177,7 +182,8 @@ export default function App() {
               <li>Inspect cells, filter scores and adjust opacity</li>
             </ul>
             <p className="next-step">
-              UP NEXT <span>Week 4 · Inference API and tiled processing</span>
+              UP NEXT{" "}
+              <span>Final review · Summarize results and limitations</span>
             </p>
           </section>
         </div>

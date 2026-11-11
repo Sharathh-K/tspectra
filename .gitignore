@@ -12,3 +12,5 @@ dist/
 .env.local
 frontend/.env.local
 reports/*.joblib
+
+data/outputs/

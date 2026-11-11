@@ -1,3 +1,7 @@
+# Week 4 added: local API, tiling and simulated timeline
+
+Read [the Week 4 guide](docs/WEEK_4_GUIDE.md), [notebook](notebooks/05_week_four_api_and_tiling.ipynb), and [research](docs/WEEK_4_RESEARCH.md). Start the local API on port 8000, restart the frontend, and open **Week 4 inference**. Large TIFF outputs stay local.
+
 # Week 3 added: transformer and analytics
 
 Start with [the Week 3 guide](docs/WEEK_3_GUIDE.md), [notebook](notebooks/04_week_three_transformer.ipynb), and [research](docs/WEEK_3_RESEARCH.md). The dashboard compares real model results and provides separately labelled simulated acreage analytics.

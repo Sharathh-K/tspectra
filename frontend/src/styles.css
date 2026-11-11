@@ -749,3 +749,33 @@ footer {
     grid-row: 3;
   }
 }
+
+/* Week 4: clear upload controls and keyboard focus. */
+#inference select {
+  background: #1a2922;
+  color: #e5eadf;
+  border: 1px solid #52684c;
+  padding: 8px;
+  max-width: 100%;
+}
+#inference input[type="file"] {
+  max-width: 260px;
+}
+#inference button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+#inference button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+#inference a {
+  color: #b9ea8c;
+  text-decoration: underline;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid #b9ea8c;
+  outline-offset: 3px;
+}
