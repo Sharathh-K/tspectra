@@ -154,6 +154,23 @@ export default function FarmMap() {
     overlay.current?.setProps({ layers });
   }, [layers]);
 
+  function resetView() {
+    setFrame(2);
+    setThreshold(0);
+    setOpacity(0.75);
+    setShowHeatmap(true);
+    setShowBoundary(true);
+    setSelected(null);
+    if (hasToken && !mapFailed) {
+      map.current?.flyTo({
+        center: FARM_CENTER,
+        zoom: 14,
+        pitch: 45,
+        bearing: -15,
+      });
+    }
+  }
+
   return (
     <section
       className="heatmap-workspace"
@@ -251,15 +268,8 @@ export default function FarmMap() {
               : "INTERACTIVE DIAGRAM"}
           </span>
           <button
-            disabled={!hasToken || mapFailed}
-            onClick={() =>
-              map.current?.flyTo({
-                center: FARM_CENTER,
-                zoom: 14,
-                pitch: 45,
-                bearing: -15,
-              })
-            }
+            onClick={resetView}
+            title="Restore default stage, filters, layers, selection and camera"
           >
             Reset view ↗
           </button>

@@ -89,7 +89,7 @@ The invented farm is divided into 80 cells. With a token, Deck.gl renders them o
 | Opacity | Changes visual transparency | Lower it to see more of the underlying basemap |
 | Heatmap/boundary toggles | Change layer visibility | Hiding the heatmap does not erase the analytics data |
 | Timeline | Switches between four invented score stages | Change stage, then inspect the distribution and selected acreage |
-| Reset view | Restores the Mapbox camera | Use after panning or rotating the satellite view |
+| Reset view | Restores stage 3, minimum score 0, opacity 75%, both layers visible and clears cell selection; also resets the satellite camera when available | Works in both the diagram and satellite view |
 
 Colours use fixed bins: low below 0.33, medium from 0.33 to below 0.66, and high from 0.66 to 1. The acreage calculation sums the approximate geographic areas of selected cells. The distribution describes the whole grid, even when a threshold hides some cells.
 
