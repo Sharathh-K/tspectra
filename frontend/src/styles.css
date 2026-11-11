@@ -715,3 +715,37 @@ footer {
 .map-bottom {
   z-index: 2;
 }
+
+/* Week 3: analytics beside the map on wide screens, below it on phones. */
+.analytics-panel {
+  margin-top: 16px;
+  min-width: 0;
+}
+.analytics-panel h3 {
+  margin-top: 20px;
+}
+@media (min-width: 1200px) {
+  .heatmap-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 0 16px;
+    align-items: start;
+  }
+  .heatmap-controls {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .heatmap-workspace .map-panel {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .analytics-panel {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    margin-top: 0;
+  }
+  .heatmap-details {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}

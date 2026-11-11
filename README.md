@@ -1,3 +1,7 @@
+# Week 3 added: transformer and analytics
+
+Start with [the Week 3 guide](docs/WEEK_3_GUIDE.md), [notebook](notebooks/04_week_three_transformer.ipynb), and [research](docs/WEEK_3_RESEARCH.md). The dashboard compares real model results and provides separately labelled simulated acreage analytics.
+
 # Mid-project review added
 
 Start with [the review guide](docs/MID_PROJECT_REVIEW.md), [the notebook](notebooks/03_mid_project_review.ipynb), and [the research notes](docs/MID_PROJECT_RESEARCH.md). The dashboard now includes extraction, CPU memory, and synthetic grid validation results. Real-farm registration and live browser alignment remain unverified.

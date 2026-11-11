@@ -10,6 +10,7 @@ import {
   parseHeatmap,
   scoreColor,
 } from "./heatmap";
+import AnalyticsPanel from "./AnalyticsPanel";
 import HeatmapPreview from "./HeatmapPreview";
 
 export default function FarmMap() {
@@ -244,6 +245,7 @@ export default function FarmMap() {
           </span>
         </div>
       </div>
+      {data && <AnalyticsPanel data={data} threshold={threshold} />}
       <div className="heatmap-details">
         <div className="heatmap-legend" aria-label="Simulated score legend">
           <b>SIMULATED SCORE</b>

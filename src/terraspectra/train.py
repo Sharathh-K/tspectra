@@ -23,7 +23,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from terraspectra.data import ROOT, CLASS_NAMES, PatchDataset
-from terraspectra.model import HybridCNN, load_model
+from terraspectra.model import HybridCNN, HybridViT, load_model
 
 
 def evaluate_scores(labels, probabilities):
@@ -52,7 +52,11 @@ def baseline_features(inputs):
                            inputs.numpy().std(axis=(3, 4))], axis=2).reshape(len(inputs), 32)
 
 
-def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root=ROOT):
+def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root=ROOT, architecture="hybrid_cnn"):
+    if architecture not in ("hybrid_cnn", "hybrid_vit"):
+        raise ValueError("Unknown architecture")
+    week = "week3" if architecture == "hybrid_vit" else "week2"
+    model_name = "Compact CNN + vision transformer" if week == "week3" else "Compact hybrid 3D–2D CNN"
     if min(epochs, batch_size, patience) < 1:
         raise ValueError("Epochs, batch size and patience must be positive.")
     root = Path(root)
@@ -65,8 +69,8 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
         raise ValueError("CUDA is unavailable. Use --device cpu.")
     device = torch.device(device_name)
     started = time.perf_counter()
-    reports = root / "reports/week2"
-    models = root / "models/week2"
+    reports = root / "reports" / week
+    models = root / "models" / week
     reports.mkdir(parents=True, exist_ok=True)
     models.mkdir(parents=True, exist_ok=True)
     training = PatchDataset("train", root)
@@ -79,7 +83,7 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
     baseline.fit(baseline_features(training.inputs), training.labels.numpy())
     baseline_metrics = evaluate_scores(validation.labels.numpy(), baseline.predict_proba(baseline_features(validation.inputs)))
 
-    model = HybridCNN().to(device)
+    model = (HybridViT() if week == "week3" else HybridCNN()).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=0.0001)
     criterion = nn.CrossEntropyLoss()
     history, best_loss, best_epoch, stale = [], float("inf"), 0, 0
@@ -111,8 +115,8 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
         if val_loss < best_loss - 0.0001:
             best_loss, best_epoch, stale = val_loss, epoch, 0
             torch.save({"state_dict": {k: v.cpu() for k, v in model.state_dict().items()},
-                        "class_names": CLASS_NAMES, "best_epoch": epoch,
-                        "input_shape": [1, 16, 16, 16], "seed": seed}, models / "hybrid_cnn.pt")
+                        "architecture": architecture, "class_names": CLASS_NAMES, "best_epoch": epoch,
+                        "input_shape": [1, 16, 16, 16], "seed": seed}, models / f"{architecture}.pt")
         else:
             stale += 1
             if stale >= patience:
@@ -120,7 +124,7 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
                 break
 
     # Evaluate the saved best checkpoint, not whichever weights happened to finish last.
-    best_model, _ = load_model(models / "hybrid_cnn.pt")
+    best_model, _ = load_model(models / f"{architecture}.pt")
     best_model.to(device)
     val_probabilities = predict_loader(best_model, val_loader, device)
     metrics = evaluate_scores(validation.labels.numpy(), val_probabilities)
@@ -144,7 +148,7 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
     elapsed = time.perf_counter() - started
     peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     peak_mib = peak / (1024 ** 2 if platform.system() == "Darwin" else 1024)
-    report = {"model": "Compact hybrid 3D–2D CNN", "classes": CLASS_NAMES,
+    report = {"model": model_name, "architecture": architecture, "classes": CLASS_NAMES,
               "parameters": sum(p.numel() for p in model.parameters()),
               "training_images": len(training), "validation_images": len(validation),
               "unlabelled_images": len(inference), "seed": seed, "device": str(device),
@@ -155,10 +159,10 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
               "elapsed_seconds": elapsed, "peak_process_memory_mib": peak_mib,
               "input_batch_mib": batch_size * 16 * 16 * 16 * 4 / 1024 ** 2,
               "cached_labelled_inputs_mib": (training.inputs.numel() + validation.inputs.numel()) * 4 / 1024 ** 2,
-              "cnn": metrics, "baseline": baseline_metrics, "majority_baseline_accuracy": 1/3,
+              ("transformer" if week == "week3" else "cnn"): metrics, "baseline": baseline_metrics, "majority_baseline_accuracy": 1/3,
               "manifest_sha256": hashlib.sha256((root / "reports/inventory.csv").read_bytes()).hexdigest(),
               "preprocessing_sha256": hashlib.sha256((models / "preprocessing.npz").read_bytes()).hexdigest(),
-              "checkpoint_sha256": hashlib.sha256((models / "hybrid_cnn.pt").read_bytes()).hexdigest(),
+              "checkpoint_sha256": hashlib.sha256((models / f"{architecture}.pt").read_bytes()).hexdigest(),
               "limitations": ["Patch labels, not pixel segmentation or chemical stress labels.",
                               "Development validation also selects the checkpoint; not an independent test.",
                               "Neighbouring source patches may share scenes; no verified farm/date grouping.",
@@ -169,7 +173,7 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
         writer.writeheader()
         writer.writerows(history)
     public = root / "frontend/public"
-    (public / "model-summary.json").write_text(json.dumps(report, indent=2) + "\n")
+    (public / ("week3-summary.json" if week == "week3" else "model-summary.json")).write_text(json.dumps(report, indent=2) + "\n")
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
     axes[0].plot([h["epoch"] for h in history], [h["train_loss"] for h in history], label="Train")
     axes[0].plot([h["epoch"] for h in history], [h["val_loss"] for h in history], label="Validation")
@@ -187,7 +191,7 @@ def train(epochs=20, batch_size=16, patience=5, seed=42, device_name="cpu", root
     fig.tight_layout()
     fig.savefig(reports / "training_results.png", dpi=150)
     plt.close(fig)
-    print(f"Finished in {elapsed:.1f}s. CNN accuracy {metrics['accuracy']:.3f}; "
+    print(f"Finished in {elapsed:.1f}s. Model accuracy {metrics['accuracy']:.3f}; "
           f"baseline accuracy {baseline_metrics['accuracy']:.3f}. Saved epoch {best_epoch}.", flush=True)
     return report
 
@@ -198,5 +202,6 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--patience", type=int, default=5)
     parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
+    parser.add_argument("--architecture", choices=["hybrid_cnn", "hybrid_vit"], default="hybrid_cnn")
     args = parser.parse_args()
-    train(args.epochs, args.batch_size, args.patience, device_name=args.device)
+    train(args.epochs, args.batch_size, args.patience, device_name=args.device, architecture=args.architecture)
