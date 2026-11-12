@@ -25,6 +25,7 @@ export default function HeatmapPreview({
       <span className="preview-north">N ↑</span>
       <svg
         viewBox={`-1 -1 ${data.columns + 2} ${data.rows + 2}`}
+        preserveAspectRatio="xMidYMid meet"
         aria-label="Synthetic heatmap diagram"
         role="group"
       >
