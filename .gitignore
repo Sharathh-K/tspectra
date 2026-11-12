@@ -1,0 +1,30 @@
+file_structure.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained models
+models/*.pt
+models/*.pth
+models/*.joblib
+
+# Secrets
+.env
+.env.*
+
+# Node (for the dashboard later)
+node_modules/
+dashboard/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
