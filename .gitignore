@@ -28,3 +28,11 @@ dashboard/dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# Notebooks
+02_geotiff_mock_cube_ai.ipynb
+
+#data
+data/mock/*.tif
+data/mock/*.h5
+data/processed/
