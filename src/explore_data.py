@@ -1,26 +1,27 @@
-from pathlib import Path
+import glob
+import os
 import numpy as np
 import rasterio
 import matplotlib.pyplot as plt
 
-DATA = Path(r"E:\TerraSpectra\data\train")
+DATA_DIR = "data/train"
 CLASSES = ["Health", "Other", "Rust"]
 
-
-def load(path):
-    with rasterio.open(path) as src:
-        return src.read().astype("float32")  # shape (125, 64, 64)
-
-
 plt.figure(figsize=(8, 5))
-for c in CLASSES:
-    files = sorted((DATA / c).glob("*.tif"))[:20]
-    mean_spectrum = np.mean([load(f).mean(axis=(1, 2)) for f in files], axis=0)
-    plt.plot(mean_spectrum, label=c)
+for cls in CLASSES:
+    files = sorted(glob.glob(os.path.join(DATA_DIR, cls, "*.tif")))[:20]
+    spectra = []
+    for f in files:
+        with rasterio.open(f) as src:
+            a = src.read().astype("float32")
+        spectra.append(a.mean(axis=(1, 2)))
+    mean_spec = np.mean(spectra, axis=0)
+    print(cls, "patches used:", len(files), "avg value:", round(float(mean_spec.mean()), 1))
+    plt.plot(mean_spec, label=cls)
 
-plt.xlabel("Band number (0-124)")
+plt.xlabel("Band number (1-125)")
 plt.ylabel("Average pixel value")
-plt.title("Average spectrum per class (20 images each)")
+plt.title("Average spectrum per class")
 plt.legend()
-plt.savefig("spectra_by_class.png", dpi=120)
-plt.show()
+plt.savefig("spectra_by_class.png", dpi=150)
+print("saved spectra_by_class.png")
