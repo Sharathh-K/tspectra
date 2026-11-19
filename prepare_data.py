@@ -6,14 +6,25 @@ from sklearn.decomposition import PCA
 
 DATA_DIR = "data/train"
 CLASSES = ["Health", "Other", "Rust"]
+N_BANDS = 125
 N_COMPONENTS = 10
 OUT_FILE = "data/processed_train.npz"
 PIXELS_PER_PATCH = 500
 
+dropped = 0
+dropped_ok = 0  # extra band really was the 65535 filler band
+
 
 def load_patch(path):
+    global dropped, dropped_ok
     with rasterio.open(path) as src:
         a = src.read().astype("float32")
+    if a.shape[0] == N_BANDS + 1:
+        dropped += 1
+        if a[-1].min() == 65535:
+            dropped_ok += 1
+        a = a[:N_BANDS]  # drop the extra last band
+    assert a.shape[0] == N_BANDS, (path, a.shape)
     return a / 10000.0  # raw values go up to ~5000, so this scales them to ~0-0.5
 
 
@@ -35,6 +46,7 @@ for f in files:
 samples = np.concatenate(samples)
 pca = PCA(n_components=N_COMPONENTS).fit(samples)
 print("variance kept:", round(float(pca.explained_variance_ratio_.sum()), 4))
+print("126-band patches fixed:", dropped, "| extra band was 65535 filler in:", dropped_ok)
 
 # Pass 2: shrink every patch from 125 bands to N_COMPONENTS
 X = np.zeros((len(files), N_COMPONENTS, 64, 64), dtype="float32")
