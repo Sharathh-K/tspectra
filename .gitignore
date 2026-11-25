@@ -19,9 +19,11 @@ models/*.joblib
 .env
 .env.*
 
-# Node (for the dashboard later)
+# Dashboard dependencies, builds and browser-test output
 node_modules/
 dashboard/dist/
+dashboard/test-results/
+dashboard/playwright-report/
 
 # OS / editor
 .DS_Store
@@ -35,4 +37,4 @@ Thumbs.db
 #data
 data/mock/*.tif
 data/mock/*.h5
-data/processed/
+data/[Pp]rocessed/

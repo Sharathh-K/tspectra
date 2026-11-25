@@ -91,7 +91,29 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Running instructions for the pipeline, API and dashboard will be added as each module lands.
+### Run the mock farm dashboard
+
+From the repository root, run the API in one terminal:
+
+```powershell
+.venv/Scripts/python -m uvicorn api.main:app --port 8000
+```
+
+Start the React dashboard in a second terminal:
+
+```powershell
+cd dashboard
+npm ci
+npm run dev:api
+```
+
+Open the local URL printed by Vite. The development proxy forwards `/api/risk` to FastAPI. The API also accepts `GET /risk?date=2026-11-13`. This date identifies the single synthetic scene. For a standalone dashboard with the bundled JSON, use `npm run dev`. For a production build, use `npm run build` and optionally set `VITE_API_URL` to a same-origin API route before building.
+
+Use the left menu to jump to the field map, field summary, map layers or pixel inspector. On smaller screens, open **Menu**. The dashboard opens in dark mode and remembers the theme selected in the menu.
+
+The local spectral composite, field boundary, stress grid and inspector work without a map service account. To see satellite context, set `VITE_MAPBOX_TOKEN` to a URL-restricted public Mapbox token in `dashboard/.env` and restart Vite. The 3D view raises stressed cells by 16 display metres to highlight them.
+
+Notebook 02 creates the reference GeoTIFFs. Run `.venv/Scripts/python -m terraspectra.io` to regenerate the matching backend and dashboard JSON files. The exporter builds a WGS84 vertex grid from the raster's UTM pixel edges. The cells carry binary mock labels. For the GIS check, run `.venv/Scripts/python -m unittest discover -s api/tests -v` from the root and `npm test` from `dashboard/`. With Google Chrome installed, run `npm run test:e2e` in the dashboard directory to check desktop and mobile-width rendering, pixel selection, map controls and request retries. Set `DASHBOARD_TEST_URL` to the running dashboard URL to exercise the live API proxy instead of the bundled scene.
 
 ## Roadmap
 
