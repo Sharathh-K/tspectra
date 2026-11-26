@@ -91,10 +91,12 @@ test('uses clean text, navigates field sections and remembers the selected theme
     await openMenu();
     await nav.getByRole('link', {name:label, exact:true}).click();
     await expect(page).toHaveURL(new RegExp('#'+id+'$'));
-    await expect(page.locator('#'+id)).toBeFocused();
+    await expect(page.getByRole('heading', {level:1, name:label, exact:true})).toBeVisible();
+    await expect(page.locator('aside section:visible')).toHaveCount(id === 'field-map' ? 3 : 1);
+    await expect(page.getByRole('region', {name:'Interactive farm map'})).toHaveCount(id === 'field-summary' ? 0 : 1);
     if (await menu.isVisible()) await expect(menu).toHaveAttribute('aria-expanded','false');
     await openMenu();
-    await expect(nav.getByRole('link', {name:label, exact:true})).toHaveAttribute('aria-current','location');
+    await expect(nav.getByRole('link', {name:label, exact:true})).toHaveAttribute('aria-current','page');
   }
   if (await menu.isVisible()) {
     await page.keyboard.press('Escape');

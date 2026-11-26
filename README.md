@@ -109,7 +109,7 @@ npm run dev:api
 
 Open the local URL printed by Vite. The development proxy forwards `/api/risk` to FastAPI. The API also accepts `GET /risk?date=2026-11-13`. This date identifies the single synthetic scene. For a standalone dashboard with the bundled JSON, use `npm run dev`. For a production build, use `npm run build` and optionally set `VITE_API_URL` to a same-origin API route before building.
 
-Use the left menu to jump to the field map, field summary, map layers or pixel inspector. On smaller screens, open **Menu**. The dashboard opens in dark mode and remembers the theme selected in the menu.
+Use the left menu to switch between the field map, field summary, map layers or pixel inspector. On smaller screens, open **Menu**. The dashboard opens in dark mode and remembers the theme selected in the menu.
 
 The local spectral composite, field boundary, stress grid and inspector work without a map service account. To see satellite context, set `VITE_MAPBOX_TOKEN` to a URL-restricted public Mapbox token in `dashboard/.env` and restart Vite. The 3D view raises stressed cells by 16 display metres to highlight them.
 

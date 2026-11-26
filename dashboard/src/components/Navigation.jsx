@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const destinations = [
+export const destinations = [
   ['field-map', 'Field map', 'M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z M9 3v15 M15 6v15'],
   ['field-summary', 'Field summary', 'M4 20V4 M4 20h16 M8 16v-4 M13 16V7 M18 16v-7'],
   ['map-layers', 'Map layers', 'M3 8l9-5 9 5-9 5z M3 12l9 5 9-5 M3 16l9 5 9-5'],
@@ -13,10 +13,9 @@ function initialTheme() {
   catch { return 'dark'; }
 }
 
-export default function Navigation({ ready }) {
+export default function Navigation({ ready, active }) {
   const [theme, setTheme] = useState(initialTheme);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(() => window.location.hash.slice(1) || 'field-map');
   const rail = useRef(null);
   const trigger = useRef(null);
 
@@ -24,12 +23,6 @@ export default function Navigation({ ready }) {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem(themeKey, theme); } catch { /* The current session still has a theme. */ }
   }, [theme]);
-
-  useEffect(() => {
-    const update = () => setActive(window.location.hash.slice(1) || 'field-map');
-    window.addEventListener('hashchange', update);
-    return () => window.removeEventListener('hashchange', update);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -59,8 +52,8 @@ export default function Navigation({ ready }) {
     <div className={'rail-body' + (open ? ' is-open' : '')} id="field-menu">
       <nav aria-label="Field navigation">
         {ready && destinations.map(([id, label, path]) =>
-          <a key={id} href={'#' + id} aria-current={active === id ? 'location' : undefined}
-            onClick={() => { setOpen(false); document.getElementById(id)?.focus({preventScroll:true}); }}>
+          <a key={id} href={'#' + id} aria-current={active === id ? 'page' : undefined}
+            onClick={() => setOpen(false)}>
             <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
               strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><path d={path}/></svg>
             {label}
